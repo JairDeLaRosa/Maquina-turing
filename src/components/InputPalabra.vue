@@ -42,7 +42,7 @@ export default {
       if (this.worldValidate != "") {
         let resultTransiciones = null;
         let mov = null;
-
+        let palabra=''
         
         await fetch(`http://127.0.0.1:4000/transitions/${this.worldValidate}`, {
           mode: "cors",
@@ -50,8 +50,10 @@ export default {
         })
           .then((response) => {
             response.json().then((res) => {
+              console.log(res)
               resultTransiciones = res.transiciones;
               mov = res.cinta
+              palabra=res.palabra
             });
           })
           .catch((e) => {
@@ -60,7 +62,7 @@ export default {
 
         setTimeout(() => {
           this.$emit("sendResult", resultTransiciones, i);
-          this.$refs.cinta.$emit('movimiento', mov, this.worldValidate)
+          this.$refs.cinta.$emit('movimiento', mov, this.worldValidate,palabra)
           }, 1000);
       }
       return

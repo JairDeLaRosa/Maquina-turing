@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    {{ this.word }}
+    
   </div>
 </template>
 
@@ -71,10 +71,10 @@ export default {
         }
       }, 500);
     },
-    logica(cinta, word) {
+    logica(cinta, word, wordCorrect) {
       console.log(cinta, word);
       this.movements = cinta;
-      this.word = word;
+      this.word = wordCorrect;
       this.moveTape();
     },
   },
