@@ -4,7 +4,7 @@
       <hello-world class="header" :msj="'Machine of turing'" />
     </b-col>
 
-    <b-col class="container-main">
+    <b-col class="container-main ">
       <cytoscape
         class="cytoscape_style"
         ref="cyRef"
@@ -12,8 +12,7 @@
         :preConfig="preConfig"
         :afterCreated="afterCreated"
       />
-      <div class="ml-3">
-        <cinta/>
+      <div class="ml-3 w-60">
         <div style="border: solid 1px black" class="p-2 mb-2">
           <label class="font-weight-bold" for="demo-sb">Velocidad</label>
           <b-form-spinbutton
@@ -38,12 +37,11 @@
 import COSEBilkent from "cytoscape-cose-bilkent";
 import helloWorld from "@/components/HeaderComponents.vue";
 import inputWorld from "@/components/InputPalabra.vue";
-import cinta from '@/components/Cinta.vue'
 export default {
   components: {
     helloWorld,
     inputWorld,
-    cinta
+    
   },
   data: () => ({
     value: 500,
@@ -126,6 +124,7 @@ export default {
         .run();
     },
     onStartSimulation(estados, i) {
+      console.log(estados)
       if (i > estados.length - 1) {
         // Fin de la simulación
         console.log("Fin de la simulación");
