@@ -4,7 +4,7 @@
       <hello-world class="header" :msj="'Machine of turing'" />
     </b-col>
 
-    <b-col class="container-main ">
+    <b-col class="container-main">
       <cytoscape
         class="cytoscape_style"
         ref="cyRef"
@@ -12,16 +12,17 @@
         :preConfig="preConfig"
         :afterCreated="afterCreated"
       />
-      <div class="ml-3 w-60">
+      <div class="contenedor-option ml-3 w-60">
         <div style="border: solid 1px black" class="p-2 mb-2">
-          <label class="font-weight-bold" for="demo-sb">Velocidad</label>
-          <b-form-spinbutton
-            id="demo-sb"
+          <label for="range-2">Velocity</label>
+          <b-form-input
+            id="range-2"
             v-model="value"
+            type="range"
             min="100"
             max="1000"
-            step="100"
-          ></b-form-spinbutton>
+            step="0.5"
+          ></b-form-input>
         </div>
         <input-world
           @sendResult="onStartSimulation"
@@ -41,10 +42,9 @@ export default {
   components: {
     helloWorld,
     inputWorld,
-    
   },
   data: () => ({
-    value: 500,
+    value: 284,
     elements: [
       { data: { id: "q0", label: "q0" } },
       { data: { id: "q1", label: "q1" } },
@@ -124,7 +124,7 @@ export default {
         .run();
     },
     onStartSimulation(estados, i) {
-      console.log(estados)
+      console.log(estados);
       if (i > estados.length - 1) {
         // Fin de la simulación
         console.log("Fin de la simulación");
@@ -162,8 +162,8 @@ export default {
 
           // Llamar recursivamente para el siguiente estado
           this.onStartSimulation(estados, i + 1);
-        }, 1000);
-      }, 1000);
+        }, this.value);
+      }, this.value);
     },
   },
   mounted() {},
